@@ -10,3 +10,5 @@
 3. 物体如何存放节点下
 - Awake时，将所有物体放入四叉树中，如果物体同时被两个及以上包围盒的范围内，则该物体属于它们的父物体，否则属于唯一的子节点
 ![](https://github.com/KDuoLi/myBlog-Picture/blob/main/QuadTree/%E6%8F%92%E5%85%A5%E7%89%A9%E4%BD%93.png?raw=true)
+4. 动态物体管理
+![](https://github.com/KDuoLi/myBlog-Picture/blob/main/QuadTree/%E5%8A%A8%E6%80%81%E7%89%A9%E4%BD%93%E7%AE%A1%E7%90%86.png?raw=true)
