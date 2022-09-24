@@ -23,7 +23,7 @@ public class Main : MonoBehaviour
     //初始化
     public void Awake()
     {
-        objList = new List<GameObject>();
+        objList = new List<GameObject>(go.transform.childCount);
         //将所有对象插入onactiveDic和objList
         go = GameObject.Find("Objs").transform;
         for (int i = 0; i < go.transform.childCount;++i)

@@ -21,11 +21,17 @@ public static class Expand
         System.Func<Vector4, int> ComputeOutCode = (projectionPos) =>
         {
             int _code = 0;
+            //该点位于视锥体的左方
             if (projectionPos.x < -projectionPos.w) _code |= 1;
+            //该点位于视锥体的右方
             if (projectionPos.x > projectionPos.w) _code |= 2;
+            //该点位于视锥体的下方
             if (projectionPos.y < -projectionPos.w) _code |= 4;
+            //该点位于视锥体的上方
             if (projectionPos.y > projectionPos.w) _code |= 8;
+            //该点位于视锥体的后方
             if (projectionPos.z < -projectionPos.w) _code |= 16;
+            //该点位于视锥体的前方
             if (projectionPos.z > projectionPos.w) _code |= 32;
             return _code;
         };
@@ -44,9 +50,11 @@ public static class Expand
                     worldPos.z = bound.center.z + k * bound.extents.z;
                     //projectionMatrix为投影矩阵，是从摄像机空间转换到裁剪空间的矩阵；worldToCameraMatrix为从世界空间变换为摄像机空间的矩阵
                     code &= ComputeOutCode(camera.projectionMatrix * camera.worldToCameraMatrix * worldPos);
+                    if(code==0)
+                        return true;
                 }
             }
         }
-        return code == 0 ? true : false;
+        return false;
     }
 }
