@@ -16,6 +16,7 @@ public class ResourcesManager : MonoBehaviour
     public List<GameObject> inActiveObjDic;
     //当前非活动对象的泛型集合
     public List<GameObject> onActiveObjDic;
+    public Dictionary<GameObject, MeshRenderer> goM;
     #region get set
     public List<GameObject> ActiveObjDic
     {
@@ -78,7 +79,8 @@ public class ResourcesManager : MonoBehaviour
     {
         if(ActiveObjDic.Contains(go))
         {
-            go.GetComponent<Renderer>().enabled = true;
+            goM[go].enabled = true;
+            //go.GetComponent<Renderer>().enabled = true;
             return go;
         }
         return null;
@@ -88,7 +90,8 @@ public class ResourcesManager : MonoBehaviour
     {
         if(InActiveObjDic.Contains(go))
         {
-            go.GetComponent<Renderer>().enabled = true;
+            goM[go].enabled = true;
+            //go.GetComponent<Renderer>().enabled = true;
             ActiveObjDic.Add(go);
             InActiveObjDic.Remove(go);
             return go;
@@ -100,7 +103,8 @@ public class ResourcesManager : MonoBehaviour
     {
         if(OnActiveObjDic.Contains(go))
         {
-            go.GetComponent<Renderer>().enabled = true;
+            goM[go].enabled = true;
+            //go.GetComponent<Renderer>().enabled = true;
             ActiveObjDic.Add(go);
             OnActiveObjDic.Remove(go);
             return go;
@@ -134,7 +138,8 @@ public class ResourcesManager : MonoBehaviour
         //将即将非活动对象的泛型集合的所有对象禁用并移入非活动对象的泛型集合
         for (int i = 0; i < InActiveObjDic.Count; ++i)
         {
-            InActiveObjDic[i].GetComponent<Renderer>().enabled = false;
+            goM[InActiveObjDic[i]].enabled = false;
+            //InActiveObjDic[i].GetComponent<Renderer>().enabled = false;
             OnActiveObjDic.Add(InActiveObjDic[i]);
             InActiveObjDic.Remove(InActiveObjDic[i]);
         }

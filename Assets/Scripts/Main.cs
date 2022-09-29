@@ -26,10 +26,12 @@ public class Main : MonoBehaviour
         objList = new List<GameObject>(go.transform.childCount);
         //将所有对象插入onactiveDic和objList
         go = GameObject.Find("Objs").transform;
+        ResourcesManager.Instance.goM = new Dictionary<GameObject, MeshRenderer>(go.transform.childCount);
         for (int i = 0; i < go.transform.childCount;++i)
         {
             ResourcesManager.Instance.OnActiveObjDic.Add(go.GetChild(i).gameObject);
-            go.GetChild(i).gameObject.GetComponent<Renderer>().enabled = false;
+            go.GetChild(i).gameObject.GetComponent<MeshRenderer>().enabled = false;
+            ResourcesManager.Instance.goM.Add(go.GetChild(i).gameObject, go.GetChild(i).gameObject.GetComponent<MeshRenderer>());
             objList.Add(go.GetChild(i).gameObject);
         }
 
